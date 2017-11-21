@@ -2,8 +2,8 @@
 
 NaNoGenMo 2017
 
-![alt text](captur1.png)
-![alt text](captur2.png)
-![alt text](captur3.png)
-![alt text](captur4.png)
+![alt text](oldschool-dungeon-crawler-book/captura1.png)
+![alt text](oldschool-dungeon-crawler-book/captura2.png)
+![alt text](oldschool-dungeon-crawler-book/captura3.png)
+![alt text](oldschool-dungeon-crawler-book/captura4.png)
 
