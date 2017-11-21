@@ -15,3 +15,5 @@
 ![alt text](https://github.com/delacannon/oldschool-dungeon-crawler-book/blob/master/captura3.png)
 ![alt text](https://github.com/delacannon/oldschool-dungeon-crawler-book/blob/master/captura4.png)
 
+### In game assets
+[Game-Icons.net](http://game-icons.net/)
