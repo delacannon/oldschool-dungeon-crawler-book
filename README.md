@@ -2,15 +2,13 @@
 
 [NaNoGenMo 2017](https://github.com/NaNoGenMo/)
 
-#### Online gamebook generator
-
+### Online gamebook generator
 [Generate](https://medical-worm.surge.sh)
 
-#### Gamebook pdf
-
+### Gamebook pdf
 [Test pdf printed from browser](https://github.com/delacannon/oldschool-dungeon-crawler-book/blob/master/Gamebook.pdf)
 
-#### Images
+### Images
 
 ![alt text](https://github.com/delacannon/oldschool-dungeon-crawler-book/blob/master/captura1.png)
 ![alt text](https://github.com/delacannon/oldschool-dungeon-crawler-book/blob/master/captura2.png)
