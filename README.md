@@ -2,8 +2,8 @@
 
 NaNoGenMo 2017
 
-![alt text](oldschool-dungeon-crawler-book/captura1.png)
-![alt text](oldschool-dungeon-crawler-book/captura2.png)
-![alt text](oldschool-dungeon-crawler-book/captura3.png)
-![alt text](oldschool-dungeon-crawler-book/captura4.png)
+![alt text](https://github.com/delacannon/oldschool-dungeon-crawler-book/blob/master/captura1.png)
+![alt text](https://github.com/delacannon/oldschool-dungeon-crawler-book/blob/master/captura2.png)
+![alt text](https://github.com/delacannon/oldschool-dungeon-crawler-book/blob/master/captura3.png)
+![alt text](https://github.com/delacannon/oldschool-dungeon-crawler-book/blob/master/captura4.png)
 
