@@ -1,5 +1,7 @@
 import Grammar from 'tracery-grammar';
-import Chance from 'chance';
+import Chance,{pickone} from 'chance';
+
+const chance = new Chance();
 
 export const getDescription = () => {
   const grammar = Grammar.createGrammar({
@@ -423,6 +425,7 @@ export const enemyGen = (id) => {
 };
 
 export const playerGen = () => {
+
   const genere = chance.pickone(['Female', 'Male']);
   const race = chance.pickone(['Dwarf', 'Elf', 'Human', 'Halfling']);
   let _class = '';
@@ -524,9 +527,10 @@ export const playerGen = () => {
   const player = {
     name: _name,
     image: race,
-    genere,
+    genere:genere,
     race: `${race} ${_class}`,
     raza: race,
+    class:_class,
     basic: base_basic,
     normal: base_normal,
     hard: base_hard,

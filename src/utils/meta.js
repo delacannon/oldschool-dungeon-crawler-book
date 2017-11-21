@@ -1,4 +1,5 @@
-
+try {
+	
 var room_id=[];
 var room_id_a =0;
 var Rooms = []
@@ -8173,5 +8174,9 @@ nme.AssetData.initialized = false;
 openfl.Assets.cachedBitmapData = new haxe.ds.StringMap();
 openfl.Assets.initialized = false;
 ApplicationMain.main();
+
+}catch(e){
+	console.log(e)
+}
 
 export default Rooms

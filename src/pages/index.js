@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import { getDescription, lootGen, enemyGen, playerGen } from '../utils/generators';
 import descriptionGenerator from 'dungeon-tools/description';
 import Chance from 'chance';
-import Rooms from '../utils/meta';
 import door from './door.png';
 import intro from './intro.jpg';
 import sword from './sword-altar.png';
 import chest from './chest.png';
 import { css } from 'glamor';
+import Rooms from '../utils/meta'
 
 const span = 64;
+const chance = new Chance();
 
 const Door = props => (
   <div
@@ -55,15 +56,15 @@ const Enemy = props => (
     <img
       src={`/static/${props.funct}.jpg`}
       css={{
- flex: '0 0 spanpx', width: span, height: span, margin: 0,
-}}
+       flex: '0 0 spanpx', width: span, height: span, margin: 0,
+      }}
       alt=""
     />
     <img
       src={`/static/${props.avatar}.png`}
       css={{
- flex: '0 0 spanpx', width: span, height: span, margin: 0,
-}}
+       flex: '0 0 spanpx', width: span, height: span, margin: 0,
+      }}
       alt=""
     />
     <div css={{ flex: 1, marginLeft: 18, padding: 12 }}>
@@ -92,16 +93,16 @@ const Chest = props => (
     <img
       src={`/static/${props.funct}.jpg`}
       css={{
- flex: '0 0 spanpx', width: span, height: span, margin: 0,
-}}
-      alt=""
+       flex: '0 0 spanpx', width: span, height: span, margin: 0,
+      }}
+     alt={`Chest image`}
     />
     <img
       src={chest}
       css={{
- flex: '0 0 spanpx', width: span, height: span, margin: 0,
-}}
-      alt=""
+       flex: '0 0 spanpx', width: span, height: span, margin: 0,
+      }}
+      alt={`Chest image`}
     />
     <div css={{ flex: 1, marginLeft: 18, padding: 12 }}>
       <h6 css={{ margin: '0 0 12px 0', padding: 0, color: 'gray' }}>
@@ -117,14 +118,14 @@ const Chest = props => (
 
 const ChestOpen = props => (
   <div css={{
- display: 'flex', alignItems: 'center', margin: '0 auto 12px auto', '&:last-child': { marginBottom: 0 },
-}}>
+     display: 'flex', alignItems: 'center', margin: '0 auto 12px auto', '&:last-child': { marginBottom: 0 },
+    }}>
     <img
       src={`/static/${props.image}.png`}
       css={{
-flex: '0 0 spanpx', width: span, height: span, margin: 0,
-}}
-      alt=""
+      flex: '0 0 spanpx', width: span, height: span, margin: 0,
+      }}
+      alt={`${props.cname} image`}
     />
     <div css={{ flex: 1, marginLeft: 18, padding: 12 }}>
       <h6 css={{ margin: '0 0 12px 0', padding: 0, color: 'gray' }}>
@@ -145,6 +146,10 @@ class IndexPage extends Component {
     this.generated = false;
     this.player = playerGen();
     this.love = playerGen();
+    this.state = {
+      map:null
+    }
+    this.storyName = `The ${chance.pickone(["Abandoned","Abominable","Abomination","Abysmal","Abyss","Adamantine","Adamantite","Ancient","Angry","Arcane","Arching","Arctic","Arid","Bare","Bellowing","Black","Black Forest","Black Mountain","Bleak","Bloodfall","Bloodlust","Boiling","Bottomless","Brilliant","Broken Bones","Broken Curse","Bronze","Brutal","Buried","Burned","Burning","Burning Forest","Buried","Chaos","Chaotic","Cobalt","Cold","Collapsing","Coral","Courage","Crescent Moon","Crystal","Cunning","Cursed","Damned","Dancing","Dark","Daydream","Dead","Deadly","Death Talon","Decayed","Decaying","Deep","Deepest","Deepwood","Delusion","Demonic","Depraved","Desert","Deserted","Desolate","Desolated","Destroyed","Destruction","Diamond","Dire","Distant","Dragon","Dragonclaw","Dragontooth","Dread","Dreaded","Dreadful","Dream","Dreary","Dry","Dying","Earth","Eastern","Eclipse","Emerald","Empty","Enchanted","Ender","Erased","Eternal","Eternal Agony","Eternal Rest","Ethereal","Fabled","Fallen Legion","False","Feared","Fearsome","Fire","Fire Mountain","Flowing","Foaming","Forbidden","Forgotten","Forsaken","Fractured","Frozen","Full Moon","Ghost","Glistening","Gloomy","Glowing","Goblin","Gold Mine","Grey","Grim","Grizzly","Hallucination","Haunted","Hidden","Hollow","Howling","Hungry","Illusion","Infernal","Infinite","Invisible","Iron","Iron Mine","Ironbark","Isolated","Jade","Jagged","Killing","Laughing","Laughing Skulls","Lifeless","Light","Lion Tooth","Living","Living Dead","Lonely","Lost","Lower","Lucent","Lurking Shadow","Malicious","Mesmerizing","Mighty","Mirage","Mirrored","Misty","Mithril","Mithril Mine","Moaning","Mocking","Molten","Motionless","Mourning","Murky","Mysterious","Mystic","Narrow","Nether","Neverending","Nightmare","Northern","Obliterated","Oblivion","Ogre","Oracle","Orc","Overhanging","Perfumed","Phantom","Phoenix","Prisoner","Quiet","Raging","Red","Restless","Roaring","Rocking","Rugged","Sad","Sanguine","Savage","Scarlet","Scheming","Scorching","Screaming","Secret","Serene","Shadow","Shadowed","Shadowy","Shimmering","Shrieking","Silent","Silver","Sleeping","Smoky","Smoldering","Sorrow","Southern","Specter","Spirit","Steel","Sterile","Sunken","Swamp","Terraced","Thief","Thundering","Tormented","Tranquil","Turbulent","Twilight","Twisted","Twisting","Unholy","Unknown","Unstable","Vicious","Violent","Voiceless","Voiceless Whimpers","Volcanic","Wailing","Wasted","Watching Eyes","Western","Whispering","Whispering Shadows","White","White Forest","Wicked","Wild","Wind","Windy","Winter","Withered","Wondering","Wraith","Wrath","Yawning"])} ${chance.pickone(["Burrows","Catacombs","Caverns","Cells","Chambers","Crypt","Delves","Dungeon","Grotto","Haunt","Labyrinth","Lair","Maze","Pits","Point","Quarters","Tombs","Tunnels","Vault"])}`
     const index = chance.unique(chance.integer, Rooms.length, { min: 2, max: Rooms.length + 1 });
     Rooms.forEach((r, i) => {
       r.id = index[i];
@@ -279,7 +284,7 @@ class IndexPage extends Component {
         <h4 id={`Chest${chest[0].cid}`}>Chest {chest[0].cid}</h4>
         <p>The {chance.pickone(['wood-made', 'iron-made', 'marble-made', 'golden', 'stone-carved', 'diamond', 'cobalt', 'copper', 'onyx', 'iron'])} chest squeak when you open it. You find a {chest[0].type} at the bottom of the chest.</p>
         <ChestOpen funct="done" image={chest[0].cimage} cname={chest[0].cname} bonus={`${chest[0].bonus}. ${chest[0].persistent}`} />
-        <p>Once you have pickup the {chest[0].type} the chest is empty. Turn back to, <a href={`#Room${chest[0].cback}`}>Room {chest[0].cback}</a> </p>
+        <p>Once you have picked up the {chest[0].type} the chest is empty. Turn back to, <a href={`#Room${chest[0].cback}`}>Room {chest[0].cback}</a> </p>
       </div>
     ));
   }
@@ -302,12 +307,46 @@ class IndexPage extends Component {
     return item;
   }
 
+  componentDidMount(){
+    this.createMap() 
+  }
+
+  createMap(){
+
+    const ctx=this.refs.canvas.getContext("2d");
+    const cspan = 12
+    const cspany = 16;
+    const fsize = 10
+    let centex = 0;
+    ctx.fillStyle='white'
+    ctx.font = `${fsize}px Arial`;
+
+    Rooms.forEach((r)=>{
+      
+      if(r.item!=null){
+        if(r.item.name=="Start"){
+          ctx.fillText("@",640/2+(8*cspan)+r.coords.x*cspan,640/1.25+r.coords.y*cspany);
+        }
+      }else{
+      ctx.fillText("█",640/2+(8*cspan)+r.coords.x*cspan,640/1.25+r.coords.y*cspany);
+      }
+    })
+
+    ctx.font = `16px Arial`;
+    ctx.fillText("@ : Room 1 (Start)",32,64);
+    ctx.fillText("█ : Room",32,96);
+    ctx.fillText(`${this.storyName} Map`,32,32);
+
+    this.setState({ map: this.refs.canvas.toDataURL("image/jpeg") });
+
+  }
+
   render() {
     return (
       <div>
         <img src={intro} css={{ display: 'block', margin: '32px auto' }} />
-        <h1 css={{ textAlign: 'center', color: '#222' }}>The {chance.pickone(["Abandoned","Abominable","Abomination","Abysmal","Abyss","Adamantine","Adamantite","Ancient","Angry","Arcane","Arching","Arctic","Arid","Bare","Bellowing","Black","Black Forest","Black Mountain","Bleak","Bloodfall","Bloodlust","Boiling","Bottomless","Brilliant","Broken Bones","Broken Curse","Bronze","Brutal","Buried","Burned","Burning","Burning Forest","Buried","Chaos","Chaotic","Cobalt","Cold","Collapsing","Coral","Courage","Crescent Moon","Crystal","Cunning","Cursed","Damned","Dancing","Dark","Daydream","Dead","Deadly","Death Talon","Decayed","Decaying","Deep","Deepest","Deepwood","Delusion","Demonic","Depraved","Desert","Deserted","Desolate","Desolated","Destroyed","Destruction","Diamond","Dire","Distant","Dragon","Dragonclaw","Dragontooth","Dread","Dreaded","Dreadful","Dream","Dreary","Dry","Dying","Earth","Eastern","Eclipse","Emerald","Empty","Enchanted","Ender","Erased","Eternal","Eternal Agony","Eternal Rest","Ethereal","Fabled","Fallen Legion","False","Feared","Fearsome","Fire","Fire Mountain","Flowing","Foaming","Forbidden","Forgotten","Forsaken","Fractured","Frozen","Full Moon","Ghost","Glistening","Gloomy","Glowing","Goblin","Gold Mine","Grey","Grim","Grizzly","Hallucination","Haunted","Hidden","Hollow","Howling","Hungry","Illusion","Infernal","Infinite","Invisible","Iron","Iron Mine","Ironbark","Isolated","Jade","Jagged","Killing","Laughing","Laughing Skulls","Lifeless","Light","Lion Tooth","Living","Living Dead","Lonely","Lost","Lower","Lucent","Lurking Shadow","Malicious","Mesmerizing","Mighty","Mirage","Mirrored","Misty","Mithril","Mithril Mine","Moaning","Mocking","Molten","Motionless","Mourning","Murky","Mysterious","Mystic","Narrow","Nether","Neverending","Nightmare","Northern","Obliterated","Oblivion","Ogre","Oracle","Orc","Overhanging","Perfumed","Phantom","Phoenix","Prisoner","Quiet","Raging","Red","Restless","Roaring","Rocking","Rugged","Sad","Sanguine","Savage","Scarlet","Scheming","Scorching","Screaming","Secret","Serene","Shadow","Shadowed","Shadowy","Shimmering","Shrieking","Silent","Silver","Sleeping","Smoky","Smoldering","Sorrow","Southern","Specter","Spirit","Steel","Sterile","Sunken","Swamp","Terraced","Thief","Thundering","Tormented","Tranquil","Turbulent","Twilight","Twisted","Twisting","Unholy","Unknown","Unstable","Vicious","Violent","Voiceless","Voiceless Whimpers","Volcanic","Wailing","Wasted","Watching Eyes","Western","Whispering","Whispering Shadows","White","White Forest","Wicked","Wild","Wind","Windy","Winter","Withered","Wondering","Wraith","Wrath","Yawning"])} {chance.pickone(["Burrows","Catacombs","Caverns","Cells","Chambers","Crypt","Delves","Dungeon","Grotto","Haunt","Labyrinth","Lair","Maze","Pits","Point","Quarters","Tombs","Tunnels","Vault"])}</h1>
-        <p css={{ textAlign: 'center', color: '#444', fontStyle: 'italic' }}>Oldschool Dungeon Crawler Gamebook #NaNoGenMo</p>
+        <h1 css={{ textAlign: 'center', color: '#222' }}>{this.storyName}</h1>
+        <p css={{ textAlign: 'center', color: '#444', fontStyle: 'italic' }}>Oldschool Dungeon Crawler Gamebook <a href="https://github.com/NaNoGenMo/">#NaNoGenMo</a></p>
         <h3 css={{ textAlign: 'center' }} >Introduction</h3>
         <p css={{ textAlign: 'justify' }}>
         Before embarking on your adventure, you must first
@@ -333,13 +372,33 @@ class IndexPage extends Component {
         you will be able to survive. Your LUCIK score indicates how natu­rally lucky a person you are.
         Luck -and magic -are facts of life in the fantasy kingdom you are about to ex­plore.
         </p>
-        <h3 css={{ textAlign: 'center' }} >Battles</h3>
+        <h3 css={{ textAlign: 'center' }} >Adventure Sheet</h3>
+        <pre>
+        <code>
+          <p><strong>NAME</strong>: {this.player.name}</p>
+          <p><strong>RACE</strong>: {this.player.genere} {this.player.raza}</p>
+          <p><strong>CLASS</strong>: {this.player.class}</p>
+          <ul>
+            <li><strong>SKILL</strong>: </li><hr/>
+            <li><strong>STAMINA</strong>: </li><hr/>
+            <li><strong>LUCK</strong>: </li><hr/>
+          </ul>
+          <p><strong>WEAPONS</strong>: </p>
+          <hr/>
+          <p><strong>EQUIPMENT</strong>: </p>
+          <hr/>
+          <p><strong>ARMOR</strong>: </p>
+          <hr/>
+          <p><strong>TREASURE</strong>: </p>
+          <hr/>
+        </code>
+        </pre>
+        <h3 css={{ textAlign: 'center' }} >Introduction</h3>
         <p css={{ textAlign: 'justify' }}>You will often come across pages in the book which
         instruct you to fight a creature of some sort. An option to Ree may be given,
         but if not -or if you choose to attack the creature anyway -you must
         resolve the battle as described below.
         </p>
-        <p css={{ textAlign: 'justify' }}>
           <ol>
             <li>
             Roll both dice once for the creature. Add its <strong><strong>SKILL</strong></strong> score. This total is the creature's Attack Strength.</li>
@@ -358,7 +417,6 @@ class IndexPage extends Component {
             <li>
             Begin the next Attack Round by returning to step 1.  This sequence continues until the <strong><strong>STAMINA</strong></strong> score of either you or the creature you are fighting has been reduced to zero (death).</li>
           </ol>
-        </p>
         <h3 css={{ textAlign: 'center' }}>Luck</h3>
         <p css={{ textAlign: 'justify' }}>
          At various times during your adventure, either in battles or when you come across
@@ -391,16 +449,19 @@ class IndexPage extends Component {
         you have taken a more serious blow. Subtract 1 extra <strong>STAMINA</strong> point. Remember that you must subtract 1 point from your own <strong>LUCK</strong> score each time
         you Test your Luck.
         </p>
+        <img src={sword} css={{ display: 'block', margin: '32px auto' }} />
         <h4 css={{ textAlign: 'center' }}>EQUIPMENT</h4>
         <p css={{ textAlign: 'justify' }}>
         You start your adventure with the basic tools of your trade a fine sword, clothes suitable for travelling,
         a backpack to hold your Provisions and any tresasure you may come across. You can not carry more than 5 items in your inventori.
         </p>
-        <img src={sword} css={{ display: 'block', margin: '32px auto' }} />
+        <h4 css={{ textAlign: 'center' }}>DUNGEON MAP</h4>
+        <img src={this.state.map} css={{ width:640, height:640, display: 'block', margin: '0 auto' }}  /> 
+        <canvas ref="canvas" width={640} height={640} css={{display:'none',margin:'0 auto', background:'black'}}></canvas>
         <h4 css={{ textAlign: 'center' }}>BACKGROUND</h4>
         <p css={{ textAlign: 'justify' }}>
-        Your name is {this.player.name}. You are a {this.player.genere.toLowerCase()} {this.player.race.toLowerCase()} that travelled for {chance.pickone(['five','two','three','four'])} {chance.pickone(['days','weeks','months'])} to find the place where {this.love.name}, 
-        your {this.love.raza.toLowerCase()} { this.love.genere == 'Female' ? 'girlfriend' : 'boyfriend' } is kidnapped by evil forces. {descriptionGenerator()} You need to find {this.love.name} inside this dungeon and escape with {this.love.genere == 'Female' ? 'her' : 'him'} before the sun goes down beneth the mountains. 
+        Your name is {this.player.name}. You are a {this.player.genere.toLowerCase()} {this.player.race.toLowerCase()} you traveled for {chance.pickone(['five','two','three','four'])} {chance.pickone(['days','weeks','months'])} to find the place where {this.love.name}, 
+        your {this.love.raza.toLowerCase()} { this.love.genere == 'Female' ? 'girlfriend' : 'boyfriend' } is kidnapped by evil forces. {descriptionGenerator()} You need to find {this.love.name} inside this dungeon and escape with {this.love.genere == 'Female' ? 'her' : 'him'} before the sun goes down beneath the mountains. 
         <br/><br/>Turn to Room 1.
         </p>
         <p css={{ textAlign: 'justify' }} />
