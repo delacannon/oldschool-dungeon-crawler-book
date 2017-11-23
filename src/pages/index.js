@@ -178,6 +178,7 @@ class IndexPage extends Component {
       const chest = chance.d100();
       if (chest < 15) {
         room.chest = lootGen(ci, room.id);
+        console.log(room.id)
         this.chests.push(room.chest);
         ci++;
       }
@@ -271,7 +272,8 @@ class IndexPage extends Component {
 
           {room.enemy != null && <Enemy avatar={image} funct="done" name={name} skill={skill} stamina={stamina} desc={desc} />}
 
-          {room.chest != null && <Chest funct="done" hasEnemy={name} cname={cname} cavatar={cimage} cindex={cid} />}
+          {room.chest != null && <Chest funct="done" hasEnemy={name} cname={cname} cavatar={cimage} 
+          cindex={cid} />}
 
         </div>
       );
@@ -283,8 +285,10 @@ class IndexPage extends Component {
       <div key={chest.cid} css={{ textAlign: 'justify' }}>
         <h4 id={`Chest${chest[0].cid}`}>Chest {chest[0].cid}</h4>
         <p>The {chance.pickone(['wood-made', 'iron-made', 'marble-made', 'golden', 'stone-carved', 'diamond', 'cobalt', 'copper', 'onyx', 'iron'])} chest squeak when you open it. You find a {chest[0].type} at the bottom of the chest.</p>
-        <ChestOpen funct="done" image={chest[0].cimage} cname={chest[0].cname} bonus={`${chest[0].bonus}. ${chest[0].persistent}`} />
-        <p>Once you have picked up the {chest[0].type} the chest is empty. Turn back to, <a href={`#Room${chest[0].cback}`}>Room {chest[0].cback}</a> </p>
+        <ChestOpen funct="done" image={chest[0].cimage} cname={chest[0].cname} 
+        bonus={`${chest[0].bonus}. ${chest[0].persistent}`} />
+        <p>Once you have picked up the {chest[0].type} the chest is empty. Turn back to, 
+        <a href={`#Room${chest[0].cback}`}> Room {chest[0].cback}</a> </p>
       </div>
     ));
   }
@@ -460,14 +464,14 @@ class IndexPage extends Component {
         <canvas ref="canvas" width={640} height={640} css={{display:'none',margin:'0 auto', background:'black'}}></canvas>
         <h4 css={{ textAlign: 'center' }}>BACKGROUND</h4>
         <p css={{ textAlign: 'justify' }}>
-        Your name is {this.player.name}. You are a {this.player.genere.toLowerCase()} {this.player.race.toLowerCase()} you traveled for {chance.pickone(['five','two','three','four'])} {chance.pickone(['days','weeks','months'])} to find the place where {this.love.name}, 
+        Your name is {this.player.name}. You are a {this.player.genere.toLowerCase()} {this.player.race.toLowerCase()}. You traveled for {chance.pickone(['five','two','three','four'])} {chance.pickone(['days','weeks','months'])} to find the place where {this.love.name}, 
         your {this.love.raza.toLowerCase()} { this.love.genere == 'Female' ? 'girlfriend' : 'boyfriend' } is kidnapped by evil forces. {descriptionGenerator()} You need to find {this.love.name} inside this dungeon and escape with {this.love.genere == 'Female' ? 'her' : 'him'} before the sun goes down beneath the mountains. 
         <br/><br/>Turn to Room 1.
         </p>
         <p css={{ textAlign: 'justify' }} />
-        { this.generateRoom() }
+        {this.state.map && this.generateRoom() }
         <h2 css={{ textAlign: 'center' }} >CHESTS</h2>
-        { this.generateChests() }
+        {this.state.map &&  this.generateChests() }
         <img src={intro} css={{ display: 'block', margin: '32px auto' }} />
         <h6 css={{ textAlign: 'center' }} >Made with ♥ by <a target="_blank" href="https://twitter.com/delacannon">@Delacannon</a></h6>
       </div>
