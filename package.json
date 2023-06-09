@@ -6,7 +6,7 @@
   "dependencies": {
     "chance": "^1.0.12",
     "dungeon-tools": "^0.1.0",
-    "gatsby": "^1.9.117",
+    "gatsby": "^4.25.7",
     "gatsby-link": "^1.6.28",
     "gatsby-plugin-glamor": "^1.6.8",
     "gatsby-plugin-react-helmet": "^1.0.8",
